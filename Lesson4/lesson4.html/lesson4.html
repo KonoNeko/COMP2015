@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 4</title>
+  <style media="screen">
+    img {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <button type="button" id="button">Start Animation</button>
+  <img src="wheel.png" alt="">
+  <script>
+    // JSON - javascript object notation
+
+    var emptyObject = {}
+
+    // valid JSON has key (strings) and value (any valid javascript data type) pairs separated by commas
+    var jsonObject = {
+      "key1": "value",
+      "key2": 2,
+      "key3": {}
+    }
+    var dog = {
+      "name": "charlie",
+      "age": 12
+    }
+    console.log(dog.name, dog.age);
+
+    // when sending JSON data across a network
+    /*
+        example response data
+        [{"name": "charlie"}, {"name": "lucy"}]   - JSON array
+        "[{"name": "charlie"}, {"name": "lucy"}]" - string of JSON
+    */
+
+    // API - application programming interface
+    // set of URLs (endpoints) provided by someone (i.e. instagram/twitter)
+
+    // REST - https://developer.mozilla.org/en-US/docs/Glossary/REST
+    // GET, POST
+    // GET - retrieving data from a server
+    // POST - putting data on a server
+  </script>
+  <script>
+    // Timers/Animations
+    // setTimeout / setInterval
+
+    // setTimeout() - delays execution of one or more lines of javascript - runs once
+    /*
+       setTimeout('string of valid javascript code', numberOfMilliseconds);
+       setTimeout(function(){}, numberOfMilliseconds);
+    */
+    // setTimeout('alert("welcome"); console.log("to the site")', 5000); // NOTE: code must be in quotes and you must alternate quotes
+
+    // console.log('hi');  // this will execute first because javascript is 'asynchronous'
+
+    // setTimeout(function(){ alert('goodbye') }, 3000);
+
+    // Event Loop - https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
+    // because of the event loop, only one statement can execute at a time
+    // var name = prompt('please enter your name');
+  </script>
+  <script>
+    // setInterval() - runs multiple times at a given interval
+    // setInterval('string', numberOfMilliseconds)
+    // setInterval(function() {}, numberOfMilliseconds);
+    let counter = 0;
+    // setInterval('console.log(counter++)', 50);  // note: this will never end
+
+    // in order to control animations, we can use the return value of setInterval()
+    let timerID = null;
+
+    // clearInterval(integer) - this will clear (i.e. stop) a running interval
+    // var button = document.getElementById('button');
+    // button.onclick = function() {
+    //   if (timerID === null) {
+    //     // if we are in the default state (timerID is null) then we start the animation
+    //     timerID = setInterval("console.log(counter += 10)", 50);
+    //   }
+    //   else {
+    //     // timerID has been assigned a number, so we stop the animation
+    //     clearInterval(timerID);
+    //     timerID = null; // necessary to make sure the if statement is true the next time the button is clicked
+    //   }
+    // }
+  </script>
+  <script>
+    var wheel = document.images[0];
+    wheel.style.position = 'absolute';
+    wheel.style.left = '0px';
+    wheel.style.top = '0px';
+    let position = 0;
+    let movingRight = true;
+
+    setInterval(function() {
+      if (movingRight && (position + wheel.width < window.innerWidth)) {
+        position++;
+      }
+      else {
+        movingRight = false;
+      }
+
+      if (!movingRight && (position > 0)) {
+        position--;
+      }
+      else {
+        movingRight = true;
+      }
+
+      wheel.style.left = position + 'px';
+      wheel.style.transform = movingRight ? `rotate(${position}deg)` : `rotate(${position}deg)`;
+    }, 10)
+  </script>
+  <script>
+    // Lab 4
+
+    // part 2, selecting all the images
+    // var images = document.querySelector('.slide img');
+    //
+    // for (let i = 0; i < images.length; i++) {
+    //   images[i].src = `dog${i}.jpg`;  //  "dog" + i + ".jpg"
+    // }
+    //
+    // /*
+    //   part 3 -
+    //   run() function - only controls whether the animation is running or stopped
+    //   startSlideShow() - do the animation
+    // */
+    //
+    // /*
+    //   steps before filling in the startSlideShow() function
+    //
+    //   OUTSIDE YOUR SLIDESHOW FUNCTION
+    //   1. get a reference (i.e. store it in a variable) to the slide-container (this is a single element)
+    //
+    //   2. get a reference to the button
+    //
+    //   3. (assuming you have named your variable 'container'), add container.style.left = '0px';
+    //
+    //   EVERYTHING ELSE INSIDE THE FUNCTION
+    //   4. updating the position of the slide container -> setting the style.left property to the new value of position
+    // */
+    //
+    // var timerID = null;
+    // var position = 0;
+    // button.onclick = run;
+    //
+    // function run() {
+    //   if (timerID === null) {
+    //     timerID = setInterval(startSlideShow, 4000);
+    //   }
+    //   else {
+    //     clearInterval(timerID);
+    //     timerID = null;
+    //   }
+    // }
+    //
+    // function startSlideShow() {
+    //   // part 4
+    //   /*
+    //   if position > -1800
+    //   decrease position by 600
+    //   otherwise set position to zero
+    //
+    //   finally, update the position of the slide container
+    //   */
+    // }
+  </script>
+  <script>
+    fetch('http://comp2015.herokuapp.com/messages')
+      .then(response => response.json())
+      .then(response => console.log(response));
+
+    // JSON objects
+    var object = {
+      "name": "chris",
+      "message": {
+        "body": "Lorem ipsum dolor amet"
+      }
+    }
+    console.log(object.name);
+    console.log(object.message.body);
+  </script>
+</body>
+</html>

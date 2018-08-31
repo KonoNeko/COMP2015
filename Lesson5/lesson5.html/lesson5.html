@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 5</title>
+</head>
+<body>
+  <script>
+    // JSON objects
+
+    var obj = {
+      "name": "chris",
+      "age": 10,
+    }
+    console.log(obj.name)
+
+    // setTimeout - running statement(s) after a delay in ms
+    // setInterval - running statement(s) repeatedly with a specified interval in ms
+
+  </script>
+  <script>
+    // create a user with name and status properties
+    var user = {
+      "name": "chris",
+      "status": "online",
+    }
+
+    // create the user and assign the parameter to the username
+    function createUser(username) {
+      var user = {
+        "name": username,
+        "status": "online",
+      }
+    }
+    createUser('bethany');
+
+    var message = {
+      "userid": 1,
+      "username": 'bill',
+      "content": {
+        "id": 1,
+        "body": "some text...",
+        "datestamp": {
+          "time": "",
+          "year": "",
+        }
+      }
+    }
+    console.log(message.username);
+    console.log(message.userid);
+    console.log(message.content.body);
+    message.content.body = 'some new text...';
+
+  </script>
+  <script>
+    // var userlist = document.getElementsByClassName('userlist')[0];
+    // userlist.innerHTML = '';
+
+    // NOTE: be careful when using innerHTML to add new HTML elements or text to the page
+    // .innerText (https://developer.mozilla.org/en-US/docs/Web/API/Node/innerText)
+  </script>
+  <script>
+    // DOM scripting - inserting elements/manipulating the DOM
+
+    // .createElement('css selector') - this creates the element but does not add it to the page
+    var myH1 = document.createElement('h1');
+    myH1.style.color = 'red';
+    myH1.id = 'heading1';
+
+    // to add an element, use .appendChild(createdElementVariable);
+    // appendChild will always append at the end of the children of a given parent
+    document.body.appendChild(myH1);
+
+    // NOTE:
+    // document.appendChild(myH1); // ERROR - must be document.body.appendChild
+
+    // Every element, or piece of text is a 'node'
+    // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+    // each node type has an 'id'  - elements = 1, text = 3
+
+    // createTextNode(string) - creates a text node that we can append to an element
+    var h1Text = document.createTextNode('COMP 2015');
+    myH1.appendChild(h1Text);
+
+    // create an element and a text node
+    // append the text to the element
+    // append the element to the page
+
+    /*
+        <div class="HERE">
+          <div></div>
+          <p>TEXT HERE</p>
+        </div>
+    */
+    var outer = document.createElement('div');
+    var inner = document.createElement('div');
+    var innerP = document.createElement('p');
+    outer.appendChild(inner);
+    outer.appendChild(innerP);
+    outer.classList.add('myclass');
+    innerP.innerHTML = 'some text';
+    document.body.appendChild(outer);
+  </script>
+  <script>
+    // Looping through an array of JSON objects
+    var messageData = [
+      {
+        "name": "chris",
+        "id": 1
+      },
+      {
+        "name": "jason",
+        "id": 2
+      },
+      {
+        "name": "bill",
+        "id": 3
+      }
+    ]
+
+    receiveData(messageData);
+
+    // for-of loop
+    function receiveData(messageData) {
+
+      /* example of parsing the data and creating html
+      {
+        "name": "bill",
+        "id": 3
+      }
+        <div class="users">
+          <p id="[id]">[name]</p>
+          <p id="[id]">[name]</p>
+          <p id="[id]">[name]</p>
+        </div>
+      */
+      var div = document.createElement('div');
+      div.classList.add('users');
+      document.body.appendChild(div);
+
+      for (var message of messageData) {
+        // on each iteration of the loop, message will be the next object {} in the array
+        var user = document.createElement('p');  // user =   <p></p>
+        user.id = message.id;  // <p id="..."></p>
+        user.innerHTML = message.name;  // <p id="...">...</p>
+        div.appendChild(user);
+        console.log(message.name);
+
+        // for assignment 2, adding multiple classes to the outer message div    <div class="message chris">
+
+        var testDiv = document.createElement('div');
+        document.body.appendChild(testDiv);
+        testDiv.classList.add('message');
+        testDiv.classList.add(message.name);
+
+        testDiv.className = `message ${message.name}`;
+      }
+    }
+
+    // example of adding some text to existing text
+    user.innerHTML += ' some new text';
+    user.innerHTML = user.innerHTML + ' some new text';
+
+
+  </script>
+</body>
+</html>

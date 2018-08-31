@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 1</title>
+  <script>
+    // document.getElementById('myH1').style.color = 'red';  // DOES NOT WORK - element with #myH1 does not exist yet
+
+    // window.onload = function() {
+    //   document.getElementById('myH1').style.color = 'gold';
+    // }
+  </script>
+  <script src="lesson1.js" charset="utf-8"></script>
+</head>
+<body>
+  <h1 id="myH1">Lesson 1</h1>
+  <p>paragraph</p>
+  <img src="cat.jpg" alt="" />
+  <img src="dog.jpg" alt="" />
+
+  <!--
+    <div>
+      <p>
+      <p>
+    </div>
+  -->
+  <!-- div>ul>li[class="list item"]{list item $}*6 and hit TAB -->
+
+  <!--
+    Install Node (comes with NPM)
+    https://nodejs.org/en/download/
+
+    Terminal:
+    Windows: cygwin
+    Linux/OS X: search for terminal in utilities
+
+    CSS preprocesser:
+    https://sass-lang.com/
+
+    Developer Tools:
+    F12 (ctrl-shift-i) / cmd-shift-i
+  -->
+  <script>
+    // Lesson notes are posted on D2L, and labs and assignments are submitted to D2L
+    // Grades on my.bcit.ca
+
+    // Where to write scripts
+    /*
+        1. in the body (usually right before the closing body tag) in script tags
+        2. in the head in script tags
+        3. in external files
+    */
+    // Why put js in head vs body vs external
+    // document.getElementById('myH1').style.color = 'red';
+
+    // Ways to avoid the problems
+    /* 1. surround your code with the code below
+    window.onload = function() {
+        // window.onload fires after the page has completely loaded, and then everything inside of the braces will run
+    }
+      2. for external files only, we can use a 'defer' attribute instead of window.onload
+      <script src="lesson1.js" defer><script>
+      <script src="lesson1.js" defer="defer"><script>
+    */
+  </script>
+  <script>
+      // Comments in js - three types
+
+      // single-line comment - comments out everything until the end of the line
+      /*
+          multi-line comments out everything between the slashes
+      */
+
+      /*
+      <!-- single-line comment - please do not use
+      -->
+      */
+  </script>
+  <script>
+    // DOM - document object model
+    // the DOM is a model of your .html document, and it specifies how you can interact with html elements
+
+    // DOM 0 - position based (the order of elements in your html)
+    /*
+      document.images  // returns all of the images on the page
+      document.links   // all the links on the page
+      document.forms
+    */
+    // document.images[0].style.border = '4px solid red';
+
+    // DOM 1
+    /*
+        document.getElementById()
+        document.getElementsByTagName('p')
+        document.getElementsByClassName('')
+    */
+
+
+    // Objects in JS - DOT NOTATION
+    // document.getElementById(); // we are using the document object
+
+    // four js objects - for the quiz
+    /*
+        document - the html page
+        window - the window or tab (the default object)
+        style - the css properties of a SINGLE element (the style attribute on the html element)
+        navigator - the browser
+    */
+    // window.alert('welcome to the site');
+    // alert('this also works');
+
+    // use console.log for debugging (printing out values etc).
+    console.log('this will print in the console in the developer tools');
+
+
+
+    // Data types
+    /*
+      Numbers (12, 12.0)
+      Strings '2345sdfgsd', "sdfgert"  (single and double quotes are treated the same)
+      Booleans - true/false
+      Undefined / Null  - empty, does not exist
+    */
+
+    // Variables -
+    // DRY - don't repeat yourself
+    // document.getElementById('myH1').style.color = 'red';
+    // document.getElementById('myH1').style.fontSize = '4em';
+    // document.getElementById('myH1').style.fontStyle = 'italic';
+
+    // declare a variable
+    var myHeading;
+    // assigning a value to the variable
+    myHeading = document.getElementById('myH1');
+    myHeading.style.color = 'red';
+    myHeading.style.fontSize = '4em';
+
+    // initialize a variable
+    var x = 10;
+    x = 20;
+    console.log(x);
+
+    // variables can change data types
+    var y = 15;
+    y = 'chris';
+
+    // use typeof(variableName) to check the data type
+    var z = 5;
+    console.log(typeof(z));
+    z = 'chris';
+    console.log(typeof(z));
+
+    // variables can store almost anything (strings, numbers, booleans, objects, arrays, functions)
+
+    // Variables are 'hoisted' - i.e. they are moved to the top of the current script or enclosing script tags. This allows you to use a variable before it is declared
+    console.log(hoistMe);
+    var hoistMe;
+
+    // prompt()
+    console.log(prompt('Please enter your name'));
+    var returnValue = prompt('Enter some text');
+    typeof(returnValue); // string
+
+    // Mathematical Operators
+    /*
+        +, -, * (multiply), / (divide)
+        ++  add one to the current value stored in a variable
+        --
+        +=, -=, *=, /=
+
+        + can also be used to join two strings together
+    */
+    var a = 5;
+    a++;
+    console.log(a);
+
+    // two forms of ++ and --   POSTFIX and PREFIX
+    var b = 100;
+    console.log(b++);  // POSTFIX
+    console.log(b);
+
+    var c = 200;
+    console.log(++c); // PREFIX
+
+    var d = 10;
+    d += 5;
+    console.log(d);
+
+    var school = 'bcit';
+    var course = 'comp2015';
+    console.log(school + ' ' + course);
+
+    // ES6 - string literal
+    var multilineString = `
+        this    is    a
+           multi-line   string
+    `;
+
+    var q = 'comp';
+    var w = '2015';
+    var e = 'downtown'
+    console.log('the course we are taking is ' + q + w + ' at the ' + e + ' campus')
+    // ${}
+    var stringWithVariables = `the course we are taking is ${q}${w} at the ${e} campus`;
+    console.log(stringWithVariables);
+
+    // other ways we can declare variables in javascript
+    o = 20; // not recommended
+    let p = 10;
+    const i = 25; // value cannot be changed
+  </script>
+  <script>
+    // lab 1 part 3
+    // document.images[0] = '100px'
+    /*
+      var firstImageWidth = document.images[0] = '100px'
+      document.images[1] = firstImageWidth;
+    */
+
+    // <img src="dog.jpg" style="width: 200px">
+
+    // <style> #img1 { width: 300px } </style>
+
+    // instead of hard coding, ask the browser using DOM 0 or DOM 1 and one of the various width properties
+    /*
+      .width
+      .naturalWidth - the actual width of the image outside of the browser
+      .clientWidth - this takes any CSS
+      .style.width - dependent on the style attribute in the HTML. if there is no style attribute you get a blank string back
+          e.g <img id="img1" src="dog.jpg" />
+          document.getElementById('img1').style.width --> returns ''
+    */
+    // an example of how to get the width using js
+    var firstImageWidth = document.getElementId('img1').width;
+
+    // NOTE: use small images so that they are fully loaded when window.onload fires
+
+    // when setting the width property for images 2 and 3 (img2 and img3), use .width
+    //  document.images[1].naturalWidth = firstImageWidth
+    // instead, use .width or .style.width
+
+    // NOTE: .width expects a number value, but .style.width expects a string
+    document.images[0].width = 100;
+    document.images[0].style.width = firstImageWidth + 'px'  // assumes that firstImageWidth is a number
+
+    /* practice:
+        document.getElementsByTagName('p');
+        document.getElementsByClassName('someClass');
+    */
+  </script>
+  <script>
+    // Next week
+
+    // Arrays (lists of strings/numbers/elements/...) - document.images (ALL the images on the page), document.getElementsByTagName('p') (ALL the paragraphs on the page)
+
+    // If statements
+
+    // Loops - executing one or more statements
+
+    // Dates and a few utility methods
+
+    // Logic
+    /*
+        chris teaches comp2015 and chris is 7' tall   FALSE
+        chris teaches comp2015 and chris has brown hair   TRUE
+
+        chris teaches comp2015 or chris is 7' tall   TRUE
+        donald trump is president of the US or pluto is made of cheese
+
+        && AND (true)
+        || OR (false)
+
+        statement 1 AND statement 2   -> only true when 1 and 2 are true
+        T && T = T, otherwise false
+
+        F || F = F, otherwise true
+    */
+  </script>
+</body>
+</html>

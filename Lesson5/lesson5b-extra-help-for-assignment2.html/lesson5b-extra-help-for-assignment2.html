@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /* PART 1 */
+  /* 1. create an array of three user objects
+      var users = [
+        {
+          "name": "chris",
+          "status": "online"
+        },
+        {},
+        {},
+      ]
+
+
+    2. create addUserFunction()
+    function addUserFunction(username) {
+        3. create new user and add to users array
+        var user = {
+          "name": username,
+          "status": offline
+        }
+        users.push(user);
+
+        4.
+        document.getElementsByClassName('userlist')[0].innerHTML = '';
+
+        5.
+        for (var userObject of users) {
+          a) Create an <li> element using .createElement
+          b) Create an <a> element using .createElement
+          c) Create a text node using .createTextNode and set it to the current user's (e.g. users[i]) name
+          d) Set the class name of your <a> to the current user's status
+          e) Set the .href property of your <a> to '#'
+          f) Append the text node from step c) inside your <a> element
+          g) Append the <a> inside your <li> element
+          h) Append the <li> inside the <ul> you got a reference to in part 4
+
+
+          b) var link = document.createElement('a')
+          c)
+              var aText = document.createTextNode(userObject.name);
+             then append inside the <a> you created in step b)
+             link.appendChild(aText)
+
+          e)  link.href = '#';
+        }
+
+        6.
+          resetLinks();
+
+
+    }  // END OF THE ADDUSER() function
+
+
+
+
+  /*
+      PART 2
+  */
+  // find the line below in firstname-lastname-assignment2.js and use the code below as a template
+  // Add your assignment2() function HERE!
+  function assignment2(response) {
+    // 2. get <div class="messages">
+
+    for (var data of response) {
+      // steps 3 to 7 go inside this for loop
+
+      // 3. create a div, add class message, add class (populated with data.username)
+
+      // 4. append this div inside the div you created in step 2
+
+      // 5. create a div with class author and append it to the div from step 3
+
+      /* 6.
+          create a div with class 'message-content' and append to div from step 3
+
+          create a paragraph and append it to the div from step 3
+      */
+
+      // 7.  use .innerHTML to put the message content (data.message.body) inside the paragraph
+    }
+  }
+  </script>
+</body>
+</html>

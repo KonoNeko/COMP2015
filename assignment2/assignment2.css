@@ -1,0 +1,117 @@
+body, html { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Arimo', sans-serif;
+}
+header {
+  background: #1DA1F2;
+  padding: 0 4%;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+header a { width: 16px; }
+a:visited { color: grey; }
+a.offline:visited { color: grey; }
+.heading {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-nav {
+  width: 100%;
+  transition: height 0.5s ease;
+}
+.header-nav nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+.header-nav nav ul li { list-style: none; }
+.header-nav nav ul img {
+  height: 16px;
+  cursor: pointer;
+}
+.hide {
+  height: 0;
+}
+.show {
+  height: 60px;
+}
+h1 img { height: 24px; }
+.desktop { display: none; }
+.main-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 4%;
+  background: rgb(168, 188, 225);
+  color: white;
+}
+.main-nav h1 {
+  font-size: 1.5em;
+}
+.main-nav ul {
+  padding-left: 10px;
+}
+.main-nav ul li {
+  display: inline;
+  list-style: none;
+  padding: 10px;
+}
+.offline {
+  color: grey;
+  font-style: italic;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.message {
+  width: 100%;
+  color: white;
+  margin-bottom: 20px;
+}
+.message-content {
+  border-radius: 15px;
+  padding: 10px;
+  max-width: 50%;
+}
+.chris .message-content {
+  background: #a7bce1;
+  float: left;
+}
+.jason .message-content {
+  background: #1da1f3;
+  float: right;
+}
+.author {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  margin: 5px;
+}
+.chris .author {
+  background: url(./chris.png);
+  float: left;
+  background-size: cover;
+}
+.jason .author {
+  background: url(./jason.jpeg);
+  float: right;
+  background-size: cover;
+}
+@media (min-width: 800px) {
+  .heading { width: auto; }
+  .header-nav { width: auto; }
+  header h1 { display: inherit; }
+  header nav ul { justify-content: flex-end; }
+  header nav ul img { display: none; }
+  .desktop { display: inherit; }
+  .mobile { display: none; }
+  .hide { height: auto; }
+}

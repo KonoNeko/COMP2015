@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="yan-wang-lab4.js" charset="utf-8"></script>
+  <style media="screen">
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+    }
+    .slideshow {
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+    .slide-container {
+      width: 2400px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      transition: left 0.5s ease;
+    }
+    .slide {
+      width: 600px;
+      height: 400px;
+      float: left;
+    }
+    .slide img {
+      height: 100%;
+      width: 100%;
+    }
+    #control {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 0;
+    }
+    #control:focus {
+      outline: none;
+    }
+    .running {
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow">
+    <div class="slide-container">
+      <div class="slide">
+        <img>
+      </div>
+      <div class="slide">
+        <img>
+      </div>
+      <div class="slide">
+        <img>
+      </div>
+      <div class="slide">
+        <img>
+      </div>
+    </div>
+  </div>
+  <button id="control">Stop/Start</button>
+</body>
+</html>

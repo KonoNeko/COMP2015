@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 3</title>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="scope.js" charset="utf-8"></script>
+</head>
+<body>
+  <p id="p1">Paragraph</p>
+  <p id="p2">Paragraph</p>
+  <p id="p3">Paragraph</p>
+  <div id="div2">
+    <p>Paragraph 0</p>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  </div>
+  <a href="http://bcit.ca">Click</a>
+  <script>
+    // var loggedIn = true;
+    // var user = 'chris';
+    // console.log(user);
+    // if (user === 'chris' && loggedIn) {
+    //   console.log('...');
+    // }
+    // console.log(new Date());
+
+    // NAMED function
+    // function checkUser() {  // definition/declaration
+    //   var loggedIn = true;
+    //   var user = 'chris';
+    //   console.log(user);
+    //   if (user === 'chris' && loggedIn) {
+    //     console.log('...');
+    //   }
+    //   console.log(new Date());
+    // }
+    //
+    // // 'calling' means to run the code inside the function
+    // checkUser();  // this calls the function
+
+
+    // function PARAMETERS
+    function checkUser(username) {  // definition/declaration
+      var loggedIn = true;
+      var user = username;
+      console.log(user);
+      if (username !== undefined && loggedIn) {
+        console.log(username + ' is logged in');
+      }
+      console.log(new Date());
+    }
+
+    // checkUser('jason');
+    // checkUser('bill');
+    checkUser();
+
+    add(10, 12); // ok to call function before it is declared, because functions are 'hoisted'
+
+    function add(lhs, rhs) {
+      var sum = lhs + rhs;
+      // console.log(sum);
+      return sum;   // 'return' means that the value inside of sum is sent back to the line where the function was called
+    }
+    add(3, 4);
+    add(3);  // ok, returns NaN
+    add(3, 5, 4);  // ok, returns 8
+    add(3, 'chris');  // ok, returns 3chris
+
+    var result = add(12, 12);
+    console.log(result);
+
+    console.log(add(12, 12));
+
+    // () - means 'run the function now'
+    var alias = add;  // this creates another name that can be used to run the function
+    alias(3, 4); // run the function now
+
+
+    // THIS - the 'this' keyword refers to the thing that called the function
+
+    // window.alert(this);  // this = the window
+    //
+    // var p = document.getElementById('p1');
+    // p.onclick = function() {
+    //   console.log(this);  // this = the clicked paragraph that triggered the function
+    // }
+
+
+    // var p = document.getElementsByTagName('p');
+    // for (var i = 0; i < p.length; i++) {
+    //   p[i].onclick = logId;
+    // }
+    //
+    // function logId() {
+    //   this.style.backgroundColor = 'blue';
+    //   this.style.color = 'yellow';
+    //   this.style.fontSize = '2em';
+    // }
+
+
+    // ES6 - fat arrow syntax
+    // arrow syntax differs from regular syntax in how 'this' is treated
+
+    // old syntax
+    // p.onclick = function() {
+    //   console.log(this); // returns the paragraph ('this' has a new context)
+    // }
+    //
+    // // arrow syntax
+    // p.onclick = () => {
+    //   console.log(this); // still says window
+    // }
+
+    // aside - anonymous functions
+    // p.onclick = function() { /* the code here can only be run when the paragraph is clicked and cannot be refered to outside of this line */  }
+  </script>
+  <script>
+    // SCOPE - when variables are accessible
+
+    // two scopes - global and block
+
+    // global - accessible anywhere, even outside of the script. this is the default unless you are inside of a block ( {} if statement, loop, function )
+    var y = 10; // global
+    let z = 20; // global
+    a = 1; // global
+
+    // difference between let and var
+    var p = document.getElementsByTagName('p');
+    // for (var i = 0; i < p.length; i++) {
+    //   p[i].onclick = function() {
+    //     console.log(i);  // returns 3 any time a paragraph is clicked
+    //   }
+    // }
+
+    for (let i = 0; i < p.length; i++) {
+      p[i].onclick = function() {
+        console.log(i);  // returns 3 any time a paragraph is clicked
+      }
+    }
+
+    console.log(x);  // accessible even though it is in a separate file because it is global scope
+
+
+    // Block scope - for quiz 3
+    var q = 10;
+    doSomething();
+
+    function doSomething() {
+      console.log(q);  // ok, because q is global
+      var w = 10;
+      console.log(w);  // ok, because w is block scope and we are still inside the block
+
+      for (let i = 0; i < 3; i++) {
+        w++; // ok
+        console.log(i); // ok
+      }
+
+      console.log(w); // ok
+      // console.log(i); // error
+    }
+    // console.log(w); // error! w ceases to exist after doSomething finishes running
+
+  </script>
+  <script>
+    // Events
+    // window.onload is an event
+    // https://developer.mozilla.org/en-US/docs/Web/Events
+
+    /*
+        User-generated Events
+
+        onclick
+        ondblclick
+        onmouseenter
+        onmouseleave
+    */
+
+    document.getElementsByTagName('p')[0].onclick = function() {
+      this.style.color = 'red';
+    }
+
+    document.getElementsByTagName('p')[0].ondblclick = myDoubleClickEvent;
+
+    function myDoubleClickEvent() {
+      this.style.backgroundColor = 'green';
+    }
+
+    // document.getElementsByTagName('p')[0].onmouseenter = function() {
+    //   console.log('the mouseenter event occurred');
+    //   this.style.backgroundColor = 'red';
+    // }
+    // document.getElementsByTagName('p')[0].onmouseleave = function() {
+    //   console.log('the mouseleave event occurred');
+    //   this.style.backgroundColor = 'white';
+    // }
+
+    // for the click event:  event.preventDefault();
+    var link = document.links[0];
+    link.onclick = function(event) {
+      event.preventDefault();
+    }
+  </script>
+  <script>
+    // jQuery - a library of javascript functions that simplify/speed up
+
+    // jquery cdn - content delivery network
+    // copy and paste script tag above into your file
+
+    // NOTE: you have to include jquery before using it
+
+    // javascript version of turning all paragraphs red
+    var p = document.getElementsByTagName('p');
+    for (let i = 0; i < p.length; i++) {
+      p[i].style.color = 'red';
+    }
+
+    // jquery replaces some of the idioms we have (like for loops) with functions, and we can chain functions together
+
+    // $('') = jQuery()   element selector function (always first in the chain)
+    $('p').css('color', 'red');
+
+    $('p').css('color', 'red').css('backgroundColor', 'yellow');
+
+    // get all links, except those that have class 'offline'
+    $('a').not('.offline').click(function() {
+      $(this).style.color = 'white';
+    })
+
+    // jquery equivalent of window.onload
+    $(document).ready(function() {
+
+    })
+
+    $('p').hover(function() {
+      // mouseenter
+      $(this).css('backgroundColor', 'red');
+    }, function() {
+      // mouseleave
+      $(this).css('backgroundColor', 'white');
+    })
+  </script>
+  <script>
+    // lab 3, part 2
+    var colors = ['cornflowerblue', 'gold', 'tomato'];
+
+    // paragraph 0 -> cornflowerblue
+    // paragraph 1 -> gold
+    // paragraph 2 -> tomato
+
+    var divs = document.querySelectorAll('#div2 p');
+
+    for (var i = 0; i < divs.length; i++) {
+      divs[i].onmouseenter = function() {
+
+      }
+      divs[i].onmouseleave = function() {
+
+      }
+    }
+
+
+    // for lab 3, part 4
+    // resize
+    window.onresize = myFunction;
+    var h1 = document...
+
+    function myFunction() {
+      console.log(window.innerWidth);
+
+      if (the inner width is less than 800) {
+        change the .style.color property of the h1 to red
+      }
+      else {
+        change it to black
+      }
+    }
+  </script>
+  <script>
+    // for assignment 1, part 6
+    var headernav = ...
+    icon.onclick = function() {
+      if (headernav.classList.contains('hide')) {
+        headernav.classList.remove('hide');
+        headernav.classList.add('show');
+        icon.src = ''
+      }
+      else {
+        // remove show, add hide, change icon
+      }
+    }
+
+    // or use jquery's .toggle() method
+    // http://api.jquery.com/toggle/
+    // http://api.jquery.com/toggleclass/
+  </script>
+</body>
+</html>

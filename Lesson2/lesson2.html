@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 2</title>
+  <style media="screen">
+    p {
+      color: rgb(0,0,0);  // black
+      /*
+        rgb(255, 255, 255);  // white
+        rgb(0, 0, 255);  // white
+      */
+    }
+  </style>
+</head>
+<body>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <p>Paragraph 3</p>
+  <p>Paragraph 4</p>
+  <!-- <img src="cat.jpg" alt=""> -->
+  <!-- <img id="dog" src="dog.jpg" alt=""> -->
+  <script>
+    // DOM 0 and DOM 1
+    /*
+      document.images
+      document.links
+      document.forms
+    */
+    document.images[0].width = 500; // position-based
+
+    // DOM 1
+    document.getElementById('dog');
+    document.getElementsByTagName('img');
+  </script>
+  <script>
+    // Arrays - list of values, elements
+    var firstname = 'chris';  // single string
+    var stringArray = ['chris', 'harris', 'jason', 'harrison'];
+    var mixedArray = ['chris', 20, null]; // any valid data type can go into an array
+
+    var emptyArray = [];
+    console.log(typeof(emptyArray));
+
+    // all arrays have a .length
+    console.log(emptyArray.length);
+
+    // because arrays are objects, we can also create them the 'new' keyword
+    var anotherEmptyArray = new Array();
+
+
+    // adding items to an array - two different ways
+    emptyArray[0] = 30;
+    emptyArray[1] = 50;
+    emptyArray[5] = 70; // even though the length is 2, we can add an item to an arbitrary position and js will fill in the missing position with undefined values
+    console.log(emptyArray);
+
+    // second way to add items to array is with a method called .push();
+    var newArray = [10, 20];
+    newArray.push(30); // inserts 30 at the end of the array
+    console.log(newArray);
+
+    // arrays can be nested
+    var simpleArray = [20, 29];
+    console.log(simpleArray[0]);
+    var nestedArray = [
+      [1249, 29], // this entire row is position zero of nestedArray
+      [30, 31]
+    ];
+    console.log(nestedArray[0]);
+    console.log(nestedArray[0][0]);
+  </script>
+  <script>
+    var allParagraphs = document.getElementsByTagName('p');
+    // [<p>Paragraph 1</p>, <p>Paragraph 2</p>, ..., ...]
+    // all Paragraphs is an array of paragraph elements
+
+    // NOTE: the following will not work! to change the color of all paragraphs in the array, 
+    // you have to loop through the array and change the properties for individual elements
+    //    allParagraphs.style.color = 'red';
+
+    // Loop - loops are a way to repeatedly execute one or more statements
+
+    // for-of loop
+    for (var i of allParagraphs) {
+      // when using for-of, i is an html element, which means you don't have a loop variable
+      // allParagraphs[i] does not work because i is not a number, it is an html element
+      i.style.color = 'red';  // use this instead
+      // console.log(i);
+
+      // if you need an index, 0...length, you have to use the standard for loop
+    }
+
+    /*
+        var a = 10
+        a++   ->   equivalent to a = a + 1;
+        a--   ->   equivalent to a = a - 1;
+        a += 2     equivalent to a = a + 2;
+        a -= 2     equivalent to a = a - 2;
+    */
+
+    // standard for loop
+    for (let i = 0; i < allParagraphs.length; i++) {
+      // let i = 0;   we are initializing a loop counter
+      // i < allParagraphs.length  is the end condition (if i = 4, the loop ends)
+      // i++   specifies how to increment/decrement the loop counter
+      allParagraphs[i].style.color = 'blue';
+    }
+
+    // simple examples
+    for (let i = 0; i <= 100; i++) {
+      console.log('paragraph' + i);
+    }
+    // for (let i = 100; i >= 0; i--) {
+    //   console.log(i);
+    // }
+    // for (let i = 10; i <= 100; i += 10) {
+    //   console.log(i);
+    // }
+  </script>
+  <script>
+    // Conditional statements (if statements)
+
+    var drivingAge;
+
+    drivingAge = prompt('Please enter your age');
+    // console.log(typeof(drivingAge));
+
+    // if (condition) {
+    //
+    // }
+
+    // prompt returns a string, and you can convert a string into a number using parseInt()
+
+    drivingAge = parseInt(drivingAge); // now drivingAge is a number
+
+    // other examples of converting string to int
+    var string = "20bcit";  // only works if leading characters are digits
+    // console.log(parseInt(string));
+
+    var otherString = "bcit20";
+    // console.log(parseInt(otherString)); // returns NaN  (not a number)
+
+    /*
+      the order must be
+      if () {
+
+      } else if () {
+
+      } else if () {  // any number of else-ifs are allowed
+
+      }
+      else {
+
+      }
+      */
+    if (drivingAge < 16) {
+      // IF driving < 16 is true, everything between these two braces will run
+      console.log('you are too young to drive');
+    }
+    else if (drivingAge >= 100) {
+      console.log('you are too old to drive');
+    }
+    else {
+      // if drivingAge >= 16, everything inside the else block ({})
+      console.log('you can drive');
+    }
+
+    var stoleACar = true;
+
+    // using AND, OR to create complex conditions
+    if ( (drivingAge >= 16 && drivingAge < 100) || stoleACar ) {
+      console.log('you can drive');
+    }
+    else {
+      console.log('you cannot drive');
+    }
+
+    // Ternary If
+    drivingAge = 14;
+    var result = drivingAge < 16 ? 'you cannot drive' : 'you can drive';
+    // console.log(result) prints 'you cannot drive'
+    // (condition) ? what to do if true : what to do if false
+  </script>
+  <script>
+    // Testing for equality
+
+    // two different equality operators, ==, ===
+
+    var x = 10;
+
+    if (x == 10) {
+      console.log('x is equal to the number 10');
+    }
+    if (x == "10") {
+      console.log('x is equal to the string 10'); // true, because == does not check against 
+                                                  // different data types
+    }
+
+    if (x === "10") {
+      console.log('x is === "10"');
+    }
+    else {
+      console.log('x is not === "10"');
+    }
+
+    // ! (not operator)
+    stoleACar = true;
+
+    if (!stoleACar) {
+      // this block will only run if stoleACar is false
+    }
+
+    if (x !== "10") {
+
+    }
+    if (x != "10") {
+
+    }
+
+
+    // ASIDE
+    if (stoleACar == true) {  // the == true is not necessary
+
+    }
+    if (stoleACar) {  // use this instead
+
+    }
+  </script>
+  <script>
+    // two functions
+
+    // .indexOf  - function to search a string for a substring
+    //  'ri' substring    'chris'  string
+    var state = 'mississippi';
+    // check to see if state contains 'si'
+    state.indexOf('si');   // string.indexOf(the search string);
+
+    // indexOf will return -1 if the string is not found
+    // or will return the starting position of the first occurrence of the search string
+    console.log(state.indexOf('si'));
+    console.log(state.indexOf('l'));
+
+    // NOTE: be careful when checking the starting position
+    if (state.indexOf('si') > -1) {  // good
+      console.log('si was found inside of ' + state);
+    }
+    // if (state.indexOf('si') > 0) {  // bad, because si could occur at the start of the string
+    //   console.log('si was found inside of ' + state);
+    // }
+
+    // ASIDE - the slice() function splits a string
+    if (state.indexOf('si') > -1) {
+      var position = state.indexOf('si');
+      state = state.slice(position);
+      console.log(state);
+    }
+
+
+    // isNaN() - this tells you if a variable is a number or not
+    var z = 10;
+    console.log(isNaN(z));
+    z = 'chris';
+    console.log(isNaN(z));
+
+    z = "10";
+    console.log(isNaN(z)); // FALSE, if it can convert your string to a number it 
+                           // will do the conversion before testing
+  </script>
+  <script>
+      // DATES
+      var currentDate = new Date();  // returns the current time and date
+      console.log(currentDate);
+
+      // to convert currentDate into hours and minutes, use the methods of the date object
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+      console.log(currentDate.getHours());
+
+      // hours:minutes
+      // hours + ':' + minutes
+
+
+      // example of how you can do arithmetic on dates
+      // how many days until august 1st
+      var today = new Date();
+      var firstOfAugust = new Date('Aug 1, 2018');
+
+      // to convert dates into numbers
+      today = today.getTime();
+      firstOfAugust = firstOfAugust.getTime();
+      // today and firstOfAugust are now a number of milliseconds
+
+      var difference = firstOfAugust - today;
+
+      var minutes = 1000 * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+
+      console.log('there are ' + difference/days + ' days until august 1st');
+  </script>
+  <script>
+    // assignment 1, part four - checking classes on an element
+    var links = document.links; // array, so use a for loop
+
+    for (let i = 0; i < links.length; i++) {
+      if (links[i].className.indexOf('offline') > -1) {
+        // ...
+      }
+      else {
+        // change the color to white
+      }
+
+      // alternate way to approach
+      if (links[i].className.indexOf('offline') === -1) {
+        // change the color of white
+      }
+    }
+  </script>
+  <script>
+    // for lab 2, part 2
+
+    // 1. create an array of strings (usernames)
+
+    // 2. loop through the array using standard for loop
+    /*
+      for (let i = 0; i < variable.length; i++) {
+
+    }
+    */
+
+    // 3. inside the for loop, use IF and indexOf to check for the substring 'i'
+    // array[i].indexOf
+
+    // 4. if 'i' is found, alert the string
+
+
+    // part 3 - style.textDecoration = 'none'
+
+    // part 4 - there are six divs on the page
+    /*
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    */
+    // loop through all of the divs and use (for example)
+    // divs[i].className = ' '
+
+    // generating the random color values
+    for () {
+      var r = Math.floor(Math.random() * 255);
+      var g = Math.floor(Math.random() * 255);
+      var b = Math.floor(Math.random() * 255);
+
+      divs[i].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+  </script>
+  <script>
+    // example of looping through an array and adding the values inside an html element:
+
+    var array = ['chris', 'harris'];
+    var firstDiv = document.getElementsByTagName('div')[0];
+    for (var i = 0; i < array.length; i++) {
+      firstDiv.innerHTML += array[i];
+    }
+  </script>
+</body>
+</html>

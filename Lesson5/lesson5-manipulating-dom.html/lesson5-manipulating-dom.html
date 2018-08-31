@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    #div1 {
+      height: 100px;
+      width: 300px;
+      background-color: cornflowerblue
+    }
+    #div2 {
+      height: 100px;
+      width: 300px;
+      background-color: pink
+    }
+    p {
+      float: left;
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="div1">
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+  </div>
+  <div id="div2"></div>
+  <script>
+    var p = document.getElementsByTagName('p');
+
+    for (var i = 0; i < p.length; i++) {
+      p[i].onclick = swap;
+    }
+
+    function swap() {
+      // nextElementSibling - is there an element to the right of the element that was clicked
+      // previousElementSibling - is there an element to the left of the element that was clicked
+      // parentNode - retrieves the parent element
+      // insertBefore
+      // firstChild
+      if (this.nextElementSibling !== null) {
+        this.parentNode.insertBefore(this.nextElementSibling, this);
+      }
+      else {
+        if (this.parentNode.nextElementSibling !== null) {
+          // this.parentNode.nextElementSibling.appendChild(this);
+          this.parentNode.nextElementSibling.insertBefore(this, this.parentNode.nextElementSibling.firstChild);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
